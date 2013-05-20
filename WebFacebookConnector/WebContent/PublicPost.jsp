@@ -35,7 +35,7 @@ Following are the public post on <%=request.getParameter("facebookuser") %>
 try {
 String username=request.getParameter("facebookuser");
 //This will run only for valid access token
-FacebookClient publicOnlyFacebookClient  = new DefaultFacebookClient("CAACEdEose0cBAFoWHAoAYxE9CaDkzjKpL42GpRAhvu9WpWn2VE1sObFQlG9Q9ZBvXp6pKGip5nmZCnqodEmwZBlbguPaX0Bm9c5mSW4Bdsv1ZANlapbYKv6yv0UIN8Kl0ZBAiBRCcNoQHoUVbrX8ZBgQoH4CvLd6cZD");
+FacebookClient publicOnlyFacebookClient  = new DefaultFacebookClient("CAACEdEose0cBAHZC8sRf4crk1BWRQAEOBCqpe8JbaWJgDScXLIYwpEVFWYNRZAywIuCwF0exiYVZAhTxNQl2sDiiUXaRN6iuIgOzibP6KwdnCkt28Dr6Qa2BZBsFxWIt1kenOZCJbslrp2KQAkgi8gcHdgTKN5f0ZD");
 //Connection<Page> publicSearch = publicOnlyFacebookClient .fetchConnection("Search",Page.class,Parameter.with("q",username),Parameter.with("type","page"));
 /*while (publicSearch.iterator().hasNext()){
 int i=0;
@@ -48,7 +48,10 @@ List<FqlUser1> users1= publicOnlyFacebookClient.executeFqlQuery(query1,FqlUser1.
 
 out.println("page id: " + users1);
 
-String query = "SELECT message FROM stream WHERE source_id="+users1.get(0);
+
+
+String query = "SELECT message,created_time FROM stream WHERE source_id="+users1.get(0)+"AND created_time <now() and created_time >1193840000 " ;
+
 //String query1="Select page_id FROM page WHERE username="+username;
 //String query = "SELECT message, post_id FROM stream WHERE source_id IN(Select page_id FROM WHERE username='AllState')";
 
