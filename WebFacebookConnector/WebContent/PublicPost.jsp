@@ -1,3 +1,5 @@
+<%@page import="com.restfb.FacebookClient.AccessToken"%>
+<%@page import="com.introviz.FqlUser2"%>
 <%@page import="com.introviz.FqlUser1"%>
 <%@page import="com.restfb.exception.FacebookException"%>
 <%@page import="com.restfb.exception.FacebookResponseStatusException"%>
@@ -35,7 +37,10 @@ Following are the public post on <%=request.getParameter("facebookuser") %>
 try {
 String username=request.getParameter("facebookuser");
 //This will run only for valid access token
-FacebookClient publicOnlyFacebookClient  = new DefaultFacebookClient("CAACEdEose0cBAHZC8sRf4crk1BWRQAEOBCqpe8JbaWJgDScXLIYwpEVFWYNRZAywIuCwF0exiYVZAhTxNQl2sDiiUXaRN6iuIgOzibP6KwdnCkt28Dr6Qa2BZBsFxWIt1kenOZCJbslrp2KQAkgi8gcHdgTKN5f0ZD");
+
+AccessToken accessToken = new DefaultFacebookClient().obtainAppAccessToken("133070086893185","0960b503e7a0644e82e299613e6c75cd");
+
+FacebookClient publicOnlyFacebookClient  = new DefaultFacebookClient(accessToken.getAccessToken());
 //Connection<Page> publicSearch = publicOnlyFacebookClient .fetchConnection("Search",Page.class,Parameter.with("q",username),Parameter.with("type","page"));
 /*while (publicSearch.iterator().hasNext()){
 int i=0;
@@ -48,10 +53,10 @@ List<FqlUser1> users1= publicOnlyFacebookClient.executeFqlQuery(query1,FqlUser1.
 
 out.println("page id: " + users1);
 
-
+//String query2 = "SELECT page_stories FROM insights WHERE object_id="+users1.get(0)+"AND period=0";
 
 String query = "SELECT message,created_time FROM stream WHERE source_id="+users1.get(0)+"AND created_time <now() and created_time >1193840000 " ;
-
+//String query = "SELECT message,created_time FROM stream WHERE source_id="+users1.get(0)+"AND LIMIT 1000 OFFSET 0 " ;
 //String query1="Select page_id FROM page WHERE username="+username;
 //String query = "SELECT message, post_id FROM stream WHERE source_id IN(Select page_id FROM WHERE username='AllState')";
 

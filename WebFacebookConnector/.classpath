@@ -14,5 +14,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Java/RestFB/restfb-1.6.12/restfb-1.6.12.jar"/>
+	<classpathentry kind="lib" path="C:/Java/Postgres/jdbc-postgresql.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
