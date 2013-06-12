@@ -1,10 +1,13 @@
 package com.introviz;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -62,17 +65,19 @@ public class FacebookData extends HttpServlet {
 FileOutputStream fos = new FileOutputStream("F:\\Java\\Facebook files\\Sample.txt", true);
 
 fos.write((publicSearch.getData().get(0).getMessage().getBytes()));*/
-       GregorianCalendar gc = new GregorianCalendar();
+		String username=request.getParameter("facebookuser");
+GregorianCalendar gc = new GregorianCalendar();
 		
-		File f=new File("C:\\Users\\HEER\\Desktop\\zubair123\\"+ gc.get(Calendar.YEAR)+ "\\" + gc.get(Calendar.MONTH) +"\\"+gc.get(Calendar.DATE) );
+		File f=new File("C:\\temp\\facebook\\"+ gc.get(Calendar.YEAR)+ "\\" + gc.get(Calendar.MONTH) +"\\"+gc.get(Calendar.DATE) );
 		
 		f.mkdirs();// creating directoriesile
 		
-		FileWriter fw= new FileWriter("C:\\Users\\HEER\\Desktop\\zubair123\\"+ gc.get(Calendar.YEAR)+ "\\" + gc.get(Calendar.MONTH) +"\\"+gc.get(Calendar.DATE)+ "\\sample1.txt");
+		FileWriter fw= new FileWriter("C:\\temp\\facebook\\"+ gc.get(Calendar.YEAR)+ "\\" + gc.get(Calendar.MONTH) +"\\"+gc.get(Calendar.DATE)+ "\\"+username+".txt");
+		
 		
 		
 		try {
-			String username=request.getParameter("facebookuser");
+			
 			//This will run only for valid access token
 
 			AccessToken accessToken = new DefaultFacebookClient().obtainAppAccessToken("133070086893185","0960b503e7a0644e82e299613e6c75cd");
@@ -104,6 +109,14 @@ fos.write((publicSearch.getData().get(0).getMessage().getBytes()));*/
 			//fos.write(users);
 			
 			//out.println("Public Posts on the page : " + users);
+			File sample1= new File("C:\\temp\\facebook\\"+ gc.get(Calendar.YEAR)+ "\\" + gc.get(Calendar.MONTH) +"\\"+gc.get(Calendar.DATE)+ "\\"+username+".txt");
+			FileOutputStream is = new FileOutputStream(sample1);
+	        OutputStreamWriter osw = new OutputStreamWriter(is);    
+	        Writer w = new BufferedWriter(osw);
+	       
+	        w.write(users.toString());
+		
+	        w.close();
 
 			}catch (FacebookJsonMappingException e) {
 				System.out.println("Jason Mapping error");
@@ -133,8 +146,8 @@ fos.write((publicSearch.getData().get(0).getMessage().getBytes()));*/
 				  // This is the catchall handler for any kind of Facebook exception
 				}
 
-		//RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/PublicPost.jsp");
-		//requestDispatcher.forward(request , response);
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/PublicPost.jsp");
+		requestDispatcher.forward(request , response);
 	}
 
 }
