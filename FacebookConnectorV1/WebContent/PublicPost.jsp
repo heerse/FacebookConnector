@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<h1>
+
 <table>
 <tr>
 <td>
@@ -17,8 +17,23 @@ The Facebook connector has run successfully. Please refer to the directory for  
 
 
 </table>
-</h1>
+----------------------------------------------------------------------------------------------------------
+<p> You can search for a saved post by using below text field </p>
 
+<br>
+
+
+<table border="1"> 
+<tr>
+<td>
+<form action="SimpleSearcherServlet" method="post">
+Search Compliance <input type="text" name ="Compsearch">
+<input type="submit" name="Click" >
+
+</form>
+</td>
+</tr>
+</table>
 <body>
 
 </body>
