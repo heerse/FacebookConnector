@@ -15,5 +15,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Java/RestFB/restfb-1.6.12/restfb-1.6.12.jar"/>
 	<classpathentry kind="lib" path="C:/Java/Lucene 3.0.1/lucene-core-3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Java/Postgres/postgresql-9.2-1002.jdbc4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
